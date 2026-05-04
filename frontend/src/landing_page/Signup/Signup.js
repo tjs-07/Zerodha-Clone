@@ -45,7 +45,8 @@ const Signup = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          window.location.href = "http://localhost:3001"; 
+          const DASHBOARD = process.env.REACT_APP_DASHBOARD_URL;
+          window.location.href = DASHBOARD;
         }, 1000);
       } else {
         handleError(message);

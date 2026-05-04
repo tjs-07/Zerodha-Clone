@@ -9,17 +9,21 @@ const Home = () => {
   useEffect(() => {
     const verifyUser = async () => {
       try {
-        const res = await axios.get("http://localhost:3002/verify", {
+        const API = process.env.REACT_APP_API_URL;
+        const FRONTEND = process.env.REACT_APP_FRONTEND_URL;
+
+        const res = await axios.get(`${API}/verify`, {
           withCredentials: true,
         });
 
         if (!res.data.status) {
-          window.location.href = "http://localhost:3000/login"; // ✅ correct
+          window.location.href = `${FRONTEND}/login`;
         }
 
       } catch (err) {
         console.log(err);
-        window.location.href = "http://localhost:3000/login"; // ✅ correct
+        const FRONTEND = process.env.REACT_APP_FRONTEND_URL;
+        window.location.href = `${FRONTEND}/login`;
       }
     };
 

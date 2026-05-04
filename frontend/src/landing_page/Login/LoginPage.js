@@ -30,7 +30,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-       const API = process.env.REACT_APP_API_URL;
+      const API = process.env.REACT_APP_API_URL;
 
       const { data } = await axios.post(
         `${API}/login`,
@@ -44,7 +44,9 @@ const Login = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          navigate("/");
+          const DASHBOARD = process.env.REACT_APP_DASHBOARD_URL;
+
+          window.location.href = DASHBOARD;
         }, 1000);
       } else {
         handleError(message);

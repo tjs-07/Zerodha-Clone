@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios, { all } from "axios";
+import axios from "axios";
 import { VerticalGraph } from "./VerticalGraph";
 
 // import { holdings } from "../data/data";
@@ -7,12 +7,17 @@ import { VerticalGraph } from "./VerticalGraph";
 const Holdings = () => {
   const [allHoldings, setAllHoldings] = useState([]);
 
-  useEffect(() => {
-    axios.get("http://localhost:3002/allHoldings").then((res) => {
-      // console.log(res.data);
+  const API = process.env.REACT_APP_API_URL;
+
+useEffect(() => {
+  axios.get(`${API}/allHoldings`, { withCredentials: true })
+    .then((res) => {
       setAllHoldings(res.data);
+    })
+    .catch((err) => {
+      console.log("Error fetching holdings:", err);
     });
-  }, []);
+}, []);
 
   // const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   const labels = allHoldings.map((subArray) => subArray["name"]);

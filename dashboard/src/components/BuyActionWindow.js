@@ -11,16 +11,30 @@ const BuyActionWindow = ({ uid }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
 
-  const handleBuyClick = () => {
-    axios.post("http://localhost:3002/newOrder", {
-      name: uid,
-      qty: stockQuantity,
-      price: stockPrice,
-      mode: "BUY",
-    });
+  const handleBuyClick = async () => {
+  try {
+    const API = process.env.REACT_APP_API_URL;
 
-    GeneralContext.closeBuyWindow();
-  };
+    const res = await axios.post(
+      `${API}/newOrder`,
+      {
+        name: uid,
+        qty: stockQuantity,
+        price: stockPrice,
+        mode: "BUY",
+      },
+      { withCredentials: true }
+    );
+
+    console.log("Order Success:", res.data);
+
+    GeneralContext.closeBuyWindow(); // close only after success
+
+  } catch (err) {
+    console.error("Order Failed:", err);
+    alert("Order failed. Try again!");
+  }
+};
 
   const handleCancelClick = () => {
     GeneralContext.closeBuyWindow();
