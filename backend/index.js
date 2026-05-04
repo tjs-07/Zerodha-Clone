@@ -22,7 +22,7 @@ const MONGO_URL = process.env.MONGO_URL;
 // ================= MIDDLEWARE =================
 app.use(express.json());
 
-// ✅ CORS (for local + deployed frontend)
+//  CORS (for local + deployed frontend)
 app.use(cors({
   origin: [
     "http://localhost:3000",
@@ -40,7 +40,7 @@ app.use(authRoute);
 
 // Test route (important for checking backend live)
 app.get("/", (req, res) => {
-  res.send("Backend is running 🚀");
+  res.send("Backend is running ");
 });
 
 // Get all holdings
@@ -88,16 +88,16 @@ app.post("/newOrder", async (req, res) => {
 
 // ================= DATABASE + SERVER =================
 
-// ✅ Connect DB first, then start server
+//  Connect DB first, then start server
 mongoose.connect(MONGO_URL)
   .then(() => {
-    console.log("✅ MongoDB Connected");
+    console.log(" MongoDB Connected");
 
     app.listen(PORT, () => {
-      console.log(`🚀 Server running on port ${PORT}`);
+      console.log(` Server running on port ${PORT}`);
     });
 
   })
   .catch((err) => {
-    console.log("❌ MongoDB Error:", err);
+    console.log(" MongoDB Error:", err);
   });
