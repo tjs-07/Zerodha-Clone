@@ -27,8 +27,8 @@ app.use(cors({
   origin: [
     "http://localhost:3000",
     "http://localhost:3001",
-    "https://zerodha-clone-khaki.vercel.app/",
-    "http://zerodha-clone-9ml5.vercel.app/"   
+    "https://zerodha-clone-khaki.vercel.app",
+    "https://zerodha-clone-9ml5.vercel.app"
   ],
   credentials: true
 }));
