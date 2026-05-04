@@ -30,8 +30,10 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+       const API = process.env.REACT_APP_API_URL;
+
       const { data } = await axios.post(
-        "http://localhost:3002/login",
+        `${API}/login`,
         {
           ...inputValue,
         },
